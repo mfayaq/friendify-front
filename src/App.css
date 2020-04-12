@@ -1,4 +1,4 @@
-@import "~antd/dist/antd.css";
+/* @import "~antd/dist/antd.css"; */
 
 html,
 body {
@@ -8,8 +8,20 @@ body {
 }
 
 .container {
-	margin: 80px auto 0 auto;
-	max-width: 1200px;
+	/* margin: 80px auto 0 auto; */
+	margin-top: 80px;
+	/* max-width: 1200px; */
+}
+
+/* .login-form { */
+/* width: 40vw; */
+/* } */
+
+.login-form-forgot {
+	float: right;
+}
+.login-form-button {
+	width: 100%;
 }
 
 .nav-container {
