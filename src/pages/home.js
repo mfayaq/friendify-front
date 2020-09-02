@@ -5,14 +5,14 @@ import axios from "axios";
 
 class home extends Component {
 	state = {
-		screams: null
+		screams: null,
 	};
 
 	componentDidMount() {
 		axios.get("/screams").then(res => {
 			console.log(res.data);
 			this.setState({
-				screams: res.data
+				screams: res.data,
 			});
 		});
 	}

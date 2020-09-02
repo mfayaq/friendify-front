@@ -31,14 +31,14 @@ class login extends Component {
 			let { email, password } = this.state;
 			axios
 				.post("/login", { email, password })
-				.then((res) => {
+				.then(res => {
 					console.log(res);
 					this.props.history.push("/");
 					this.setState({
 						loading: false,
 					});
 				})
-				.catch((err) => {
+				.catch(err => {
 					// console.log(err);
 					if (err.response) {
 						console.log(err.response);
@@ -58,7 +58,7 @@ class login extends Component {
 		// 	else return false;
 		// };
 
-		const onFinish = (values) => {
+		const onFinish = values => {
 			console.log("Received values of form: ", values);
 			let { email, password } = values;
 			if (!email) {
@@ -90,7 +90,7 @@ class login extends Component {
 			onLogin();
 		};
 
-		const onValuesChange = (values) => {
+		const onValuesChange = values => {
 			let key = Object.keys(values)[0];
 			if (this.state.loginError[key])
 				this.setState({
