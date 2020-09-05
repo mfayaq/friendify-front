@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from "antd";
-import Scream from "./Scream";
+import Scream from "../components/Scream";
 import axios from "axios";
 
 class home extends Component {

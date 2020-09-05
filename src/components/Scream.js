@@ -29,7 +29,7 @@ class Scream extends Component {
 					// ]}
 				>
 					<Meta
-						avatar={<Avatar src={imageUrl} size="large" />}
+						avatar={<Avatar src={imageUrl} size={50} />}
 						title={
 							<div style={{ display: "flex", justifyContent: "space-between" }}>
 								<div>{userHandle}</div>
