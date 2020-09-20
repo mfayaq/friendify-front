@@ -1,16 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
-
+//Redux
+import { Provider } from "react-redux";
+import store from "./redux/store";
+//Components
 import Navbar from "./components/Navbar";
-
+//Pages
 import home from "./pages/home";
 import login from "./pages/login";
 import signup from "./pages/signup";
 
 function App() {
 	return (
-		<div className="App">
+		<Provider store={store}>
 			<Router>
 				<Navbar />
 				<div className="container">
@@ -21,7 +24,7 @@ function App() {
 					</Switch>
 				</div>
 			</Router>
-		</div>
+		</Provider>
 	);
 }
 
