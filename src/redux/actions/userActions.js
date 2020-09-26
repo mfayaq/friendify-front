@@ -8,11 +8,7 @@ export const loginUser = (userData, history) => dispatch => {
 		.post("/login", userData)
 		.then(res => {
 			console.log(res);
-			this.props.history.push("/");
-			this.setState({
-				loading: false,
-			});
-			const FBIdToken = res.data.token;
+			const FBIdToken = res.data.access_token;
 			axios.defaults.headers.common["Authorization"] = `Bearer ${FBIdToken}`;
 			dispatch(getUserData());
 			dispatch(clearErrors());
@@ -24,9 +20,11 @@ export const loginUser = (userData, history) => dispatch => {
 };
 
 export const getUserData = () => dispatch => {
-	axios.get("/user").then(res => {
-		dispatch({ type: SET_USER, payload: res.data }).catch(err =>
-			console.log(err)
-		);
-	});
+	axios
+		.get("/user")
+		.then(res => {
+			console.log(res);
+			dispatch({ type: SET_USER, payload: res.data });
+		})
+		.catch(err => console.log(err));
 };
