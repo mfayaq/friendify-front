@@ -19,12 +19,12 @@ class home extends Component {
 	render() {
 		let recentScream = this.state.screams ? (
 			this.state.screams.map(scream => (
-				<p>
+				<div style={{ marginBottom: "5%" }}>
 					<Scream key={scream.screamId} scream={scream} />
-				</p>
+				</div>
 			))
 		) : (
-			<p>Loading...</p>
+			<div>Loading...</div>
 		);
 		return (
 			<Row>

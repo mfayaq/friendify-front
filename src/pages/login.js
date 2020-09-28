@@ -1,18 +1,20 @@
 import React, { Component } from "react";
 import { Form, Input, Button, Checkbox, Row, Col } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-// import { Spin } from "antd";
-// import { css } from "@emotion/core";
-// import ClipLoader from "react-spinners/ClipLoader";
 import "../App.css";
 import AppIcon from "../images/favicon.svg";
-// import { formatCountdown } from "antd/lib/statistic/utils";
 import Spin from "antd/es/spin";
 import "antd/es/spin/style/css";
 
+import { Link } from "react-router-dom";
+
 import { connect } from "react-redux";
 import { loginUser } from "../redux/actions/userActions";
-import { setErrors, clearErrors } from "../redux/actions/uiActions";
+import {
+	setErrors,
+	clearErrors,
+	clearErrorsAll,
+} from "../redux/actions/uiActions";
 import { bindActionCreators } from "redux";
 
 class login extends Component {
@@ -20,11 +22,20 @@ class login extends Component {
 		super();
 
 		this.state = {
-			email: "",
-			password: "",
 			remember: false,
-			errors: {},
 		};
+	}
+
+	componentDidMount() {
+		let { history, dispatch } = this.props;
+		this.unlisten = history.listen(() => {
+			let { errors } = this.props.ui;
+			if (Object.keys(errors).length > 0) dispatch(clearErrorsAll());
+		});
+	}
+
+	componentWillUnmount() {
+		this.unlisten();
 	}
 
 	render() {
@@ -128,14 +139,13 @@ class login extends Component {
 									>
 										Log in
 									</Button>
-									Or <a href="/signup">register now!</a>
+									Or <Link to="/signup">register now!</Link>
 								</Form.Item>
 							</Form>
 						</Col>
 					</Row>
 				</Spin>
 			</div>
-			// </div>
 		);
 	}
 }
