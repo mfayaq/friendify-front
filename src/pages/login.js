@@ -6,7 +6,7 @@ import AppIcon from "../images/favicon.svg";
 import Spin from "antd/es/spin";
 import "antd/es/spin/style/css";
 
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { loginUser } from "../redux/actions/userActions";
@@ -39,8 +39,8 @@ class login extends Component {
 	}
 
 	render() {
-		let { errors } = this.props.ui;
-
+		let { errors, loading } = this.props.ui;
+		let { authenticated } = this.props.user;
 		const onFinish = values => {
 			console.log("Received values of form: ", values);
 			let { dispatch } = this.props;
@@ -77,9 +77,12 @@ class login extends Component {
 			console.log(values);
 		};
 
+		if (authenticated === true) {
+			return <Redirect to="/" />;
+		}
 		return (
 			<div>
-				<Spin spinning={this.props.ui.loading}>
+				<Spin spinning={loading}>
 					<Row justify="center">
 						<Col xs={20} sm={20} md={12} lg={8}>
 							<div style={{ display: "flex", justifyContent: "center" }}>

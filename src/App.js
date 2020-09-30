@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AuthRoute from "./components/AuthRoute";
 import "./App.css";
 //Redux
 import { Provider } from "react-redux";
@@ -18,9 +19,9 @@ function App() {
 				<Navbar />
 				<div className="container">
 					<Switch>
-						<Route exact path="/" component={home}></Route>
-						<Route exact path="/login" component={login}></Route>
-						<Route exact path="/signup" component={signup}></Route>
+						<AuthRoute exact path="/" component={home} />
+						<Route exact path="/login" component={login} />
+						<Route exact path="/signup" component={signup} />
 					</Switch>
 				</div>
 			</Router>

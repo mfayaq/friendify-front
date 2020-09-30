@@ -2,7 +2,7 @@ import { SET_USER, LOADING_UI } from "../types";
 import { setErrors, clearErrors } from "./uiActions";
 import axios from "axios";
 
-export const loginUser = (userData, history) => dispatch => {
+export const loginUser = userData => dispatch => {
 	dispatch({ type: LOADING_UI });
 	axios
 		.post("/login", userData)
@@ -11,16 +11,15 @@ export const loginUser = (userData, history) => dispatch => {
 			const FBIdToken = res.data.access_token;
 			localStorage.setItem("FBIdToken", FBIdToken);
 			axios.defaults.headers.common["Authorization"] = `Bearer ${FBIdToken}`;
-			dispatch(getUserData());
 			dispatch(clearErrors());
-			history.push("/");
+			dispatch(getUserData());
 		})
 		.catch(err => {
 			dispatch(setErrors(err.response.data));
 		});
 };
 
-export const signUpUser = (userData, history) => dispatch => {
+export const signUpUser = userData => dispatch => {
 	dispatch({ type: LOADING_UI });
 	axios
 		.post("/signup", userData)
@@ -28,9 +27,8 @@ export const signUpUser = (userData, history) => dispatch => {
 			const FBIdToken = res.data.access_token;
 			localStorage.setItem("FBIdToken", `Bearer ${FBIdToken}`);
 			axios.defaults.headers.common["Authorization"] = `Bearer ${FBIdToken}`;
-			dispatch(getUserData());
 			dispatch(clearErrors());
-			history.push("/");
+			dispatch(getUserData());
 		})
 		.catch(err => {
 			if (err.response) {

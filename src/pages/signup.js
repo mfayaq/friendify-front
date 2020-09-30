@@ -6,7 +6,7 @@ import "../App.css";
 import AppIcon from "../images/favicon.svg";
 import Spin from "antd/es/spin";
 import "antd/es/spin/style/css";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { connect } from "react-redux";
 import { signUpUser } from "../redux/actions/userActions";
@@ -36,7 +36,7 @@ class signup extends Component {
 
 	render() {
 		let { errors, loading } = this.props.ui;
-
+		let { authenticated } = this.props.user;
 		const onFinish = values => {
 			console.log("Received values of form: ", values);
 			let { dispatch } = this.props;
@@ -76,6 +76,10 @@ class signup extends Component {
 			let key = Object.keys(values)[0];
 			if (errors[key]) dispatch(clearErrors(key));
 		};
+
+		if (authenticated === true) {
+			return <Redirect to="/" />;
+		}
 
 		return (
 			<div>
